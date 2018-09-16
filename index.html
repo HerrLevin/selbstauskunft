@@ -1,100 +1,210 @@
-<!doctype>
-<html>
-<head>
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
     <title>Selbstauskunft</title>
 
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <script type="text/javascript" src="./jspdf.debug.js"></script>
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <script type="text/javascript" src="js/jspdf.debug.js"></script>
+    <script type="text/javascript" src="js/print.js"></script>
+  </head>
 
-    <script type="text/javascript">
-		function demoTwoPageDocument() {
-			//loading values of form
-			var x = document.getElementById("Formular");
-			var fname = x.elements[0].value;
-			var fperson = x.elements[1].value;
-			var faddress = x.elements[2].value;
-			var ftown = x.elements[3].value;
-			var pname = x.elements[4].value;
-			var paddress = x.elements[5].value;
-			var ptown = x.elements[6].value;
-			
-			//start of page-generation
-			var doc = new jsPDF('p', 'mm', 'a4');
-			doc.setFontSize(10)
-			doc.setFont("helvetica")
-			doc.text(20, 35, pname + ', ' + paddress + ', ' + ptown)
-			
-			doc.setFontSize(12)
-			doc.text(20, 50, fname)
-			doc.text(20, 55, fperson)
-			doc.text(20, 60, faddress)
-			doc.text(20, 65, ftown)
-			
-			doc.setFontSize(10)
-			doc.text(158, 85, 'Datum')
-			doc.setFontSize(12)
-			doc.text(158, 90, '01.01.2001')
-			
-			doc.setFont('helvetica', 'bold')
-			doc.text(24, 98, 'Auskunft nach Artikel 15 DSGVO')
-			
-			doc.setFont('helvetica', 'normal')
-			doc.text(24, 110, 'Sehr geehrte Damen und Herren,')
-			
-			
-			doc.text(24, 118, 'ich bitte hiermit um Auskunft gemäß Art. 15 DSGVO. Bitte bestätigen Sie mir, ob Sie')
-			doc.text(24, 123, 'mich betreffende personenbezogene Daten verarbeiten (vgl. Art. 4 Nr. 1 und 2 DSGVO)')
-			doc.text(24, 133, 'In diesem Fall bitte ich Sie im Sinne des Art. 15 Abs. 1 DSGVO um Auskunft über')
-			doc.text(30, 140, '1. sämtliche personenbezogenen Daten, die Sie zu meiner Person gespeichert haben')
-			doc.text(30, 145, '2. die Verarbeitungszwecke')
-			doc.text(30, 150, '3. die Kategorien personenbezogener Daten, die verarbeitet werden')
-			doc.text(30, 155, '4. die Empfänger oder Kategorien von Empfängern, gegenüber denen die')
-			doc.text(35, 160, 'personenbezogenen Daten offengelegt worden sind oder noch offengelegt werden')
-			doc.text(30, 165, '5. falls möglich die geplante Dauer, für die die personenbezogenen Daten')
-			doc.text(35, 170, 'gespeichert werden, oder, falls dies nicht möglich ist, die Kriterien für die Festlegung')
-			doc.text(35, 175, 'dieser dauer')
-			doc.text(30, 180, '6. wenn die personenbezogenen Daten nicht bei mir erhoben wurden, alle')
-			doc.text(35, 185, 'verfügbaren Informationen über die Herkunft der Daten')
-			doc.text(30, 190, '7. falls zutreffend, das Bestehen einer automatisierten Entscheidungsfindung')
-			doc.text(35, 195, 'einschließlich Profiling gemäß Art. 22 Abs. 1 und 4 DSGVO und – sofern gegeben –')
-			doc.text(35, 200, 'aussagekräftige Informationen über die involvierte Logik sowie die Tragweite und die')
-			doc.text(35, 205, 'angestrebten Auswirkungen einer derartigen Verarbeitung meine Person.')
-			doc.text(24, 213, 'Sofern Sie meine personenbezogenen Daten an ein Drittland oder an eine internationale')
-			doc.text(24, 218, 'Organisation übermitteln, bitte ich über die geeigneten Garantien gemäß Art. 46 DSGVO')
-			doc.text(24, 223, 'im Zusammenhang mit der Übermittlung unterrichtet zu werden.')
-			
-			doc.text(24, 230, 'Meine Anfrage schließt explizit auch sämtliche weiteren Angebote und Unternehmen ein,')
-			doc.text(24, 235, 'für die Sie Verantwortlicher im Sinne des Art. 4 Nr. 7 DSGVO sind.')
-			
-			doc.text(24, 243, 'Die Auskunft ist nach Art. 12 Abs. 3 DSGVO unverzüglich, in jedem Fall aber innerhalb')
-			doc.text(24, 248, 'eines Monats nach Eingang der Anfrage zu erteilen. Sie hat nach Art. 15 Abs. 3 DSGVO')
-			doc.text(24, 253, 'kostenlos zu erfolgen.')
-			
-			doc.addPage()
-			doc.text(24, 35, 'Sollten Sie meiner Anfrage nicht innerhalb der genannten Frist nachkommen, behalte')
-			doc.text(24, 40, 'ich mir vor rechtliche Schritte gegen Sie einzuleiten und Beschwerde bei der')
-			doc.text(24, 45, 'zuständigen Datenschutzaufsichtsbehörde einzureichen.')
-			
-			doc.text(24, 55, 'Mit freundlichen Grüßen')
-			doc.text(24, 60, pname)
-			
-			doc.save('DSGVO.pdf')
-			}
+  <body class="bg-light">
+
+    <div class="container">
+      <div class="py-5 text-center">
+        <img class="d-block mx-auto mb-4" src="img/icon.png" alt="" width="72" height="72">
+        <h2>Selbstauskunft</h2>
+        <p class="lead">Dieses Tool dient zum Generieren von PDFs zur Selbstauskunft nach Artikel 15 DSGVO.</p>
+      </div>
+
+      <div class="row">
+        <!-- <div class="col-md-4 order-md-2 mb-4">
+          <h4 class="d-flex justify-content-between align-items-center mb-3">
+            <span class="text-muted">Ausgew&auml;hlte Firmen</span>
+            <span class="badge badge-secondary badge-pill">3</span>
+          </h4>
+          <ul class="list-group mb-3">
+            <li class="list-group-item d-flex justify-content-between lh-condensed">
+              <div>
+                <h6 class="my-0">DB Vertrieb GmbH</h6>
+                <small class="text-muted">Wolframstraße 20</small>
+                <small class="text-muted">&#8226;</small>
+                <small class="text-muted">70191 Stuttgart</small>
+              </div>
+              <span class="text-muted">&times</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between lh-condensed">
+              <div>
+                <h6 class="my-0">1&1 Internet AG</h6>
+                <small class="text-muted">Elgendorfer Str. 57</small>
+                <small class="text-muted">&#8226;</small>
+                <small class="text-muted">56410 Montabaur</small>
+              </div>
+              <span class="text-muted">&times</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between lh-condensed">
+              <div>
+                <h6 class="my-0">ARD ZDF Deutschlandradio Beitragsservice</h6>
+                <small class="text-muted">Freimersdorfer Weg 6</small>
+                <small class="text-muted">&#8226;</small>
+                <small class="text-muted">50656 Köln</small>
+              </div>
+              <span class="text-muted">&times</span>
+            </li>
+          </ul>
+
+          <form class="card p-2">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Firmenname">
+              <div class="input-group-append">
+                <button type="submit" class="btn btn-secondary">Hinzuf&uuml;gen</button>
+              </div>
+            </div>
+          </form>
+        </div> -->
+        <div class="col-md-4 order-md-2 mb-4">
+          <h4 class="d-flex justify-content-between align-items-center mb-3">
+            <span class="text-muted">Firmeninformationen</span>
+          </h4>
+          <form id="company" class="needs-validation" novalidate="">
+              <div class="mb-3">
+                <label for="pname">Firmenname</label>
+                <input type="text" class="form-control" id="fname" placeholder="Musterfirma" required="">
+                <div class="invalid-feedback">
+                  Der Firmenname ist ben&ouml;tigt.
+                </div>
+              </div>
+
+            <div class="mb-3">
+              <label for="address">Firmenadresse</label>
+              <input type="text" class="form-control" id="fstreet" placeholder="Musterstraße 13" required="">
+              <div class="invalid-feedback">
+                Bitte eine Adresse eingeben
+              </div>
+            </div>
+
+
+            <div class="row">
+              <div class="col-md-4 mb-3">
+                <label for="zip">Postleitzahl</label>
+                <input type="text" class="form-control" id="fzip" placeholder="15567" required="">
+                <div class="invalid-feedback">
+                  Postleitzahl benötigt
+                </div>
+              </div>
+            <div class="col-md-8 mb-3">
+              <label for="address2">Stadt</label>
+              <input type="text" class="form-control" id="ftown" placeholder="Musterstadt" required="">
+              <div class="invalid-feedback">
+                Bitte eine Stadt eingeben
+              </div>
+            </div>
+            </div>
+          </form>
+        </div>
+        <div class="col-md-8 order-md-1">
+          <h4 class="mb-3">Pers&ouml;nliche Informationen</h4>
+          <form class="needs-validation" id="personaldata" novalidate="">
+              <div class="mb-3">
+                <label for="pname">Name</label>
+                <input type="text" class="form-control" id="pname" placeholder="Erika Mustermann" required="">
+                <div class="invalid-feedback">
+                  Dein Name ist ben&ouml;tigt.
+                </div>
+              </div>
+
+            <div class="mb-3">
+              <label for="address">Adresse</label>
+              <input type="text" class="form-control" id="address" placeholder="Musterstraße 13" required="">
+              <div class="invalid-feedback">
+                Bitte eine Adresse eingeben
+              </div>
+            </div>
+
+
+            <div class="row">
+              <div class="col-md-4 mb-3">
+                <label for="zip">Postleitzahl</label>
+                <input type="text" class="form-control" id="zip" placeholder="15567" required="">
+                <div class="invalid-feedback">
+                  Postleitzahl benötigt
+                </div>
+              </div>
+            <div class="col-md-8 mb-3">
+              <label for="address2">Stadt</label>
+              <input type="text" class="form-control" id="town" placeholder="Musterstadt" required="">
+              <div class="invalid-feedback">
+                Bitte eine Stadt eingeben
+              </div>
+            </div>
+            </div>
+
+
+            <div class="mb-3">
+              <label for="email">Email <span class="text-muted">(Optional)</span></label>
+              <input type="email" class="form-control" id="email" placeholder="you@example.com">
+              <div class="invalid-feedback">
+                Bitte gib eine korrekte e-Mail-Adresse an.
+              </div>
+            </div>
+<!-- 
+            <hr class="mb-4">
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" id="same-address">
+              <label class="custom-control-label" for="same-address">Shipping address is the same as my billing address</label>
+            </div>
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" id="save-info">
+              <label class="custom-control-label" for="save-info">Save this information for next time</label>
+            </div> -->
+            <hr class="mb-4">
+            <button class="btn btn-primary btn-lg btn-block" type="submit">PDF(s) generieren</button>
+          </form>
+        </div>
+      </div>
+
+      <footer class="my-5 pt-5 text-muted text-center text-small">
+        <p class="mb-1">© 2018 Selbstauskunft&trade;</p>
+        <ul class="list-inline">
+          <li class="list-inline-item"><a href="https://www.datenanfragen.de/blog/musterbrief-dsgvo-anfrage-auskunft/">Quelle der Anfrage</a></li><!-- 
+          <li class="list-inline-item"><a href="#">Terms</a></li>
+          <li class="list-inline-item"><a href="#">Support</a></li> -->
+        </ul>
+      </footer>
+    </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+
+    <script>
+      // Example starter JavaScript for disabling form submissions if there are invalid fields
+      (function() {
+        'use strict';
+
+        window.addEventListener('load', function() {
+          // Fetch all the forms we want to apply custom Bootstrap validation styles to
+          var forms = document.getElementsByClassName('needs-validation');
+
+          // Loop over them and prevent submission
+          var validation = Array.prototype.filter.call(forms, function(form) {
+            form.addEventListener('submit', function(event) {
+              if (form.checkValidity() === false) {
+                event.preventDefault();
+                event.stopPropagation();
+              } else {
+                initiateprint();
+              }
+              form.classList.add('was-validated');
+            }, false);
+          });
+        }, false);
+      })();
     </script>
-</head>
+  
 
-<body>
-	<form target="_self" id="Formular">
-		<p>Firmenname: <input type="text" id="formfname" name="fname" value="Musterfirma GmbH & Co. KG"></p>
-		<p>Kontaktperson (wenn möglich): <input type="text" name="fperson" value="Frau Datenschutzbeauftragte"></p>
-		<p>Firmenadresse: <input type="text" name="faddress" value="Musterstraße 42"></p>
-		<p>Firmenstadt: <input type="text" name="ftown" value="13337 Musterstadt"></p>
-		<br>
-		<p>Dein Name: <input type="text" name="pname" value="Erika Musterfrau"></p>
-		<p>Deine Adresse: <input type="text" name="paddress" value="Beispielstraße 22"></p>
-		<p>Deine Stadt: <input type="text" name="ptown" value="11337 Beispielstadt"></p>
-	</form>
-		<a href="javascript:demoTwoPageDocument()">PDF generieren</a> <br/><br/>
-		<a href="https://www.datenanfragen.de/blog/musterbrief-dsgvo-anfrage-auskunft/"> Quelle: https://www.datenanfragen.de/blog/musterbrief-dsgvo-anfrage-auskunft/</a>
-</body>
-</html>
+</body></html>
