@@ -8,16 +8,27 @@
 
     <script type="text/javascript">
 		function demoTwoPageDocument() {
+			//loading values of form
+			var x = document.getElementById("Formular");
+			var fname = x.elements[0].value;
+			var fperson = x.elements[1].value;
+			var faddress = x.elements[2].value;
+			var ftown = x.elements[3].value;
+			var pname = x.elements[4].value;
+			var paddress = x.elements[5].value;
+			var ptown = x.elements[6].value;
+			
+			//start of page-generation
 			var doc = new jsPDF('p', 'mm', 'a4');
 			doc.setFontSize(10)
 			doc.setFont("helvetica")
-			doc.text(20, 35, 'Max Mustermann, Musterstr. 1, 12345 Musterstadt')
+			doc.text(20, 35, pname + ', ' + paddress + ', ' + ptown)
 			
 			doc.setFontSize(12)
-			doc.text(20, 50, 'Musterfirma')
-			doc.text(20, 55, 'Musterabteilung')
-			doc.text(20, 60, 'Musterstraße 3-4')
-			doc.text(20, 65, '13377 Musterstadt')
+			doc.text(20, 50, fname)
+			doc.text(20, 55, fperson)
+			doc.text(20, 60, faddress)
+			doc.text(20, 65, ftown)
 			
 			doc.setFontSize(10)
 			doc.text(158, 85, 'Datum')
@@ -65,7 +76,7 @@
 			doc.text(24, 45, 'zuständigen Datenschutzaufsichtsbehörde einzureichen.')
 			
 			doc.text(24, 55, 'Mit freundlichen Grüßen')
-			doc.text(24, 60, 'Max Mustermann')
+			doc.text(24, 60, pname)
 			
 			doc.save('DSGVO.pdf')
 			}
@@ -73,16 +84,17 @@
 </head>
 
 <body>
-<form>
-<p>Firmenname: <input type="text" name="fname"></p>
-<p>Kontaktperson (wenn möglich): <input type="text" name="fperson"></p>
-<p>Firmenadresse: <input type="text" name="faddress"></p>
-<p>Firmenstadt: <input type="text" name="ftown"></p>
-<br>
-<p>Dein Name: <input type="text" name="pname"></p>
-<p>Deine Adresse: <input type="text" name="paddress"></p>
-<p>Deine Stadt: <input type="text" name="ptown"></p>
-<a href="javascript:demoTwoPageDocument()">KLICK</a>
-<a href="https://www.datenanfragen.de/blog/musterbrief-dsgvo-anfrage-auskunft/"> Quelle: https://www.datenanfragen.de/blog/musterbrief-dsgvo-anfrage-auskunft/</a>
+	<form target="_self" id="Formular">
+		<p>Firmenname: <input type="text" id="formfname" name="fname" value="Musterfirma GmbH & Co. KG"></p>
+		<p>Kontaktperson (wenn möglich): <input type="text" name="fperson" value="Frau Datenschutzbeauftragte"></p>
+		<p>Firmenadresse: <input type="text" name="faddress" value="Musterstraße 42"></p>
+		<p>Firmenstadt: <input type="text" name="ftown" value="13337 Musterstadt"></p>
+		<br>
+		<p>Dein Name: <input type="text" name="pname" value="Erika Musterfrau"></p>
+		<p>Deine Adresse: <input type="text" name="paddress" value="Beispielstraße 22"></p>
+		<p>Deine Stadt: <input type="text" name="ptown" value="11337 Beispielstadt"></p>
+	</form>
+		<a href="javascript:demoTwoPageDocument()">PDF generieren</a> <br/><br/>
+		<a href="https://www.datenanfragen.de/blog/musterbrief-dsgvo-anfrage-auskunft/"> Quelle: https://www.datenanfragen.de/blog/musterbrief-dsgvo-anfrage-auskunft/</a>
 </body>
 </html>
