@@ -79,3 +79,55 @@ function print(fname, fperson, faddress, ftown, pname, paddress, ptown) {
 	
 	doc.save('DSGVO.pdf')
 }
+
+// Create a "close" button and append it to each list item
+var myNodelist = document.getElementsByTagName("LI");
+var i;
+for (i = 0; i < myNodelist.length; i++) {
+  var span = document.createElement("SPAN");
+  var txt = document.createTextNode("\u00D7");
+  span.className = "close";
+  span.appendChild(txt);
+  myNodelist[i].appendChild(span);
+}
+
+// Click on a close button to hide the current list item
+var close = document.getElementsByClassName("close");
+var i;
+for (i = 0; i < close.length; i++) {
+  close[i].onclick = function() {
+    var div = this.parentNode;
+    div.parentNode.removeChild(div);
+  }
+}
+
+// Create a new list item when clicking on the "Add" button
+function newElement() {
+  var li = document.createElement("li");
+  var div = document.createElement("div");
+  var inputValue = document.getElementById("company-input").value;
+  li.appendChild(div);
+  var t = document.createTextNode(inputValue);
+  div.appendChild(t);
+  if (inputValue === '') {
+    alert("Firmenname darf nicht leer sein!");
+  } else {
+    document.getElementById("company-list").appendChild(li);
+  }
+  document.getElementById("company-input").value = "";
+  document.getElementById("company-input").focus();
+  var button = document.createElement("button");
+  var txt = document.createTextNode("\u00D7");
+  button.className = "close";
+  button.appendChild(txt);
+  li.appendChild(button);
+  li.className= "list-group-item d-flex justify-content-between lh-condensed";
+
+  for (i = 0; i < close.length; i++) {
+    close[i].onclick = function() {
+      var div = this.parentElement;
+      var div = this.parentNode;
+      div.parentNode.removeChild(div);
+    }
+  }
+}
