@@ -10,9 +10,13 @@
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href="css/easy-autocomplete.css" rel="stylesheet">
     <script type="text/javascript" src="js/jspdf.debug.js"></script>
+    <script type="text/javascript" src="js/companies.js"></script>
     <script type="text/javascript" src="js/print.js"></script>
     <script type="text/javascript" src="js/jquery.min.js"></script>
     <script type="text/javascript" src="js/jquery.easy-autocomplete.js"></script>
+    <script type="text/javascript">
+
+	</script>
   </head>
 
   <body class="bg-light">
@@ -29,7 +33,7 @@
         <div class="col-md-4 order-md-2 mb-4">
           <h4 class="d-flex justify-content-between align-items-center mb-3">
             <span class="text-muted">Ausgew&auml;hlte Firmen</span>
-            <span class="badge badge-secondary badge-pill">3</span>
+            <span class="badge badge-secondary badge-pill" id="company-count">0</span>
           </h4>
           <ul class="list-group mb-3" id="company-list">
           	<!-- <ul> for adding companies -->
@@ -40,7 +44,6 @@
               <input type="text" id="company-input" class="form-control" placeholder="Firmenname">
               <div class="input-group-append">
                 <button onclick="newElement()" class="btn btn-secondary">Hinzuf&uuml;gen</button>
-                <input type="text" value="" id="index-holder">
               </div>
             </div>
           </div>
@@ -142,46 +145,17 @@
 
     <script type="text/javascript">
     	var options = {
-			data: [
-				{
-					"name": "1&1 Telecom GmbH",
-					"contact": "Datenschutz",
-					"street": "Elgendorfer Straße 57",
-					"town": "56410 Montabaur",
-					"fax": "+4907219608003",
-					"phone": "",
-					"mail": "datenschutz@1und1telecom.de"
-				},
-				{
-					"name": "ARD ZDF Deutschlandradio Beitragsservice",
-					"contact": "",
-					"street": "Freimersdorfer Weg 6",
-					"town": "50656 Köln",
-					"fax": "+4922150612507",
-					"phone": "+4922150612632",
-					"mail": "datenschutz@beitragsservice.de"
-				},
-				{
-					"name": "DB Vertrieb GmbH",
-					"contact": "",
-					"street": "Stephensonstraße 1",
-					"town": "60326 Frankfurt",
-					"fax": "+496926521658",
-					"phone": "+491806996633",
-					"mail": ""
-				}
-			],
+			 data: Object.keys(jsoncompanies),
 
 		
-			getValue: "name",
 		
-			list: {
+			 list: {
 				match: {
 					enabled: true
-				},
-				sort: {
+			 },
+			 sort: {
 					enabled: true
-				}
+			 }
 			}
 		};
 
