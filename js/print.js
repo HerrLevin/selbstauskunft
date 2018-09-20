@@ -4,9 +4,9 @@ function sleep(ms) {
 
 function initiateprint(_callback) {
 	var pForm = document.getElementById("personaldata");
-	var pname = pForm.elements[0].value; + ' ' + pForm.elements[1].value;
-	var paddress = pForm.elements[2].value;
-	var ptown = pForm.elements[3].value + ' ' + pForm.elements[4].value;
+	var pname = pForm.elements[0].value;
+	var paddress = pForm.elements[1].value;
+	var ptown = pForm.elements[2].value + ' ' + pForm.elements[3].value;
 
 
 	var items = document.getElementsByClassName("single-company");
@@ -31,7 +31,7 @@ function print(fname, fperson, faddress, ftown, pname, paddress, ptown, ffax) {
 	var doc = new jsPDF('p', 'mm', 'a4');
 	doc.setFontSize(10)
 	doc.setFont("helvetica")
-	doc.text(20, 35, pname + '•' + paddress + '•' + ptown)
+	doc.text(20, 35, pname + ' • ' + paddress + ' • ' + ptown)
 	
 	doc.setFontSize(12)
 	doc.text(20, 50, fname)
