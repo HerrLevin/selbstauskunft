@@ -12,7 +12,6 @@ function initiateprint(_callback) {
 	var items = document.getElementsByClassName("single-company");
 	for (i = 0; i < items.length; i++){
 		var name = items[i].id;
-		console.log(name);
  		var fname = jsoncompanies[name].name;
  		var faddress = jsoncompanies[name].street;
  		var ftown = jsoncompanies[name].town;
@@ -116,6 +115,10 @@ function newElement() {
   var li = document.createElement("li");
   var div = document.createElement("div");
   var inputValue = document.getElementById("company-input").value;
+
+  if (!jsoncompanies.hasOwnProperty(inputValue)) {
+  	alert('Es muss ein Firmenname aus der Datenbank sein!');
+  } else {
   li.appendChild(div);
   var t = document.createTextNode(inputValue);
   div.appendChild(t);
@@ -133,7 +136,7 @@ function newElement() {
   li.appendChild(button);
   li.className= "list-group-item d-flex justify-content-between lh-condensed single-company";
   li.setAttribute("id", inputValue);
-
+  }
   for (i = 0; i < close.length; i++) {
     close[i].onclick = function() {
       var div = this.parentElement;
@@ -148,5 +151,4 @@ function newElement() {
 function updateCounter() {
   var items = document.getElementsByClassName("single-company");
   document.getElementById("company-count").textContent = items.length.toString();
-  console.log(items.length);
 }
