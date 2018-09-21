@@ -1,12 +1,29 @@
 'use strict';
-const {app, protocol, BrowserWindow, shell} = require('electron')
+const {app, protocol, BrowserWindow, shell, ipcMain, dialog} = require('electron')
 const path = require('path');
+const gdprdocumentgenerator = require('./gdprdocumentgenerator.js');
+const PDFWindow = require('electron-pdf-window');
+const fs = require('fs');
 
 // Adds debug features like hotkeys for triggering dev tools and reload
 require('electron-debug')();
 
 // Prevent window being garbage collected
 let mainWindow;
+
+ipcMain.on('generate-gdpr-pdf', (event, arg) => {
+
+	// Save file to somewhere
+
+	let dest = dialog.showSaveDialog({});
+
+	// Generate gdpr document
+
+	gdprdocumentgenerator.generateDocument(arg, dest);
+
+
+	event.sender.send('asynchronous-reply', true)
+})
 
 app.on('ready', () => {
 

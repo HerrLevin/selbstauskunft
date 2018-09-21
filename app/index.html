@@ -51,7 +51,7 @@
         </div>
         <div class="col-md-8 order-md-1">
           <h4 class="mb-3">Pers&ouml;nliche Informationen</h4>
-          <form class="needs-validation" id="personaldata" novalidate="">
+          <form class="needs-validation" id="personaldata" novalidate="" action="#">
               <div class="mb-3">
                 <label for="pname">Name</label>
                 <input type="text" class="form-control" id="pname" placeholder="Erika Mustermann" required="">
@@ -119,7 +119,10 @@
     </div>
 
 
-    <script>
+    <script type="text/javascript">
+      
+      const { ipcRenderer } = require('electron');
+
       // Example starter JavaScript for disabling form submissions if there are invalid fields
       (function() {
         'use strict';
@@ -131,16 +134,31 @@
           // Loop over them and prevent submission
           var validation = Array.prototype.filter.call(forms, function(form) {
             form.addEventListener('submit', function(event) {
+              event.preventDefault();
               if (form.checkValidity() === false) {
-                event.preventDefault();
                 event.stopPropagation();
               } else {
-                initiateprint();
+                
+                let payload = {
+                  fullname: $("#pname").val(),
+                  adress: $("#address").val(),
+                  zip: $("#zip").val(),
+                  town: $("#town").val(),
+                  companies: []
+                };
+                
+                console.log("Submit", payload);
+
+                ipcRenderer.send('generate-gdpr-pdf', payload);
+                
+
               }
               form.classList.add('was-validated');
             }, false);
           });
+
         }, false);
+
       })();
     </script>
 
