@@ -1,0 +1,40 @@
+{
+  "name": "gdpr-disclosure",
+  "productName": "GDPR Disclosure Tool",
+  "version": "0.0.0",
+  "description": "",
+  "license": "GPL-3.0-or-later",
+  "repository": "https://github.com/HerrLevin/selbstauskunft",
+  "main": "main.js",
+  "contributors": [
+    {
+      "name": "HerrLevin",
+      "url": "https://herrlevin.de/"
+    },
+    {
+      "name": "BjarneRest",
+      "url": "https://github.com/BjarneRest"
+    }
+  ],
+  "scripts": {
+    "test": "xo",
+    "start": "electron .",
+    "build": "electron-packager . --out=dist --asar --overwrite --all"
+  },
+  "dependencies": {
+    "electron-debug": "^2.0.0",
+    "jquery": "^3.3.1"
+  },
+  "devDependencies": {
+    "devtron": "^1.4.0",
+    "electron-packager": "^12.1.0",
+    "electron": "^2.0.2",
+    "xo": "^0.21.1"
+  },
+  "xo": {
+    "envs": [
+      "node",
+      "browser"
+    ]
+  }
+}

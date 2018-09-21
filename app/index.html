@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Selbstauskunft</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="atom://css/bootstrap.css" rel="stylesheet">
+    <link href="atom://css/easy-autocomplete.css" rel="stylesheet">
+    <script type="text/javascript">
+      const jQuery = require('jquery');
+      const $ = jQuery;
+    </script>
+    <script type="text/javascript" src="atom://js/jspdf.debug.js"></script>
+    <script type="text/javascript" src="atom://js/companies.js"></script>
+    <script type="text/javascript" src="atom://js/print.js"></script>
+    <script type="text/javascript" src="atom://js/jquery.easy-autocomplete.js"></script>
+  </head>
+
+  <body class="bg-light">
+
+    <div class="container">
+      <div class="py-5 text-center">
+        <img class="d-block mx-auto mb-4" src="atom://img/icon.png" alt="" width="72" height="72">
+        <h2>Selbstauskunft</h2>
+        <p class="lead">Dieses Tool dient zum Generieren von PDFs zur Selbstauskunft nach Artikel 15 DSGVO.</p>
+      </div>
+
+      <div class="row">
+        <div class="col-md-4 order-md-2 mb-4">
+          <h4 class="d-flex justify-content-between align-items-center mb-3">
+            <span class="text-muted">Ausgew&auml;hlte Firmen</span>
+            <span class="badge badge-secondary badge-pill" id="company-count">0</span>
+          </h4>
+          <ul class="list-group mb-3" id="company-list">
+          	<!-- <ul> for adding companies -->
+          </ul>
+
+          <div class="card p-2">
+            <div class="input-group">
+              <input type="text" id="company-input" class="form-control" placeholder="Firmenname">
+              <div class="input-group-append">
+                <button onclick="newElement()" class="btn btn-secondary">Hinzuf&uuml;gen</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-8 order-md-1">
+          <h4 class="mb-3">Pers&ouml;nliche Informationen</h4>
+          <form class="needs-validation" id="personaldata" novalidate="">
+              <div class="mb-3">
+                <label for="pname">Name</label>
+                <input type="text" class="form-control" id="pname" placeholder="Erika Mustermann" required="">
+                <div class="invalid-feedback">
+                  Dein Name ist ben&ouml;tigt.
+                </div>
+              </div>
+
+            <div class="mb-3">
+              <label for="address">Adresse</label>
+              <input type="text" class="form-control" id="address" placeholder="Musterstraße 13" required="">
+              <div class="invalid-feedback">
+                Bitte eine Adresse eingeben
+              </div>
+            </div>
+
+
+            <div class="row">
+              <div class="col-md-4 mb-3">
+                <label for="zip">Postleitzahl</label>
+                <input type="text" class="form-control" id="zip" placeholder="15567" required="">
+                <div class="invalid-feedback">
+                  Postleitzahl benötigt
+                </div>
+              </div>
+            <div class="col-md-8 mb-3">
+              <label for="address2">Stadt</label>
+              <input type="text" class="form-control" id="town" placeholder="Musterstadt" required="">
+              <div class="invalid-feedback">
+                Bitte eine Stadt eingeben
+              </div>
+            </div>
+            </div>
+
+
+<!--             <div class="mb-3">
+              <label for="email">Email <span class="text-muted">(Optional)</span></label>
+              <input type="email" class="form-control" id="email" placeholder="you@example.com">
+              <div class="invalid-feedback">
+                Bitte gib eine korrekte e-Mail-Adresse an.
+              </div>
+            </div> -->
+<!-- 
+            <hr class="mb-4">
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" id="same-address">
+              <label class="custom-control-label" for="same-address">Shipping address is the same as my billing address</label>
+            </div>
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" id="save-info">
+              <label class="custom-control-label" for="save-info">Save this information for next time</label>
+            </div> -->
+            <hr class="mb-4">
+            <button class="btn btn-primary btn-lg btn-block" type="submit">PDF(s) generieren</button>
+          </form>
+        </div>
+      </div>
+
+      <footer class="my-5 pt-5 text-muted text-center text-small">
+        <p class="mb-1">© 2018 Selbstauskunft&trade;</p>
+        <ul class="list-inline">
+          <li class="list-inline-item"><a href="https://www.datenanfragen.de/blog/musterbrief-dsgvo-anfrage-auskunft/" target="_blank">Quelle der Anfrage</a></li>
+        </ul>
+      </footer>
+    </div>
+
+
+    <script>
+      // Example starter JavaScript for disabling form submissions if there are invalid fields
+      (function() {
+        'use strict';
+
+        window.addEventListener('load', function() {
+          // Fetch all the forms we want to apply custom Bootstrap validation styles to
+          var forms = document.getElementsByClassName('needs-validation');
+
+          // Loop over them and prevent submission
+          var validation = Array.prototype.filter.call(forms, function(form) {
+            form.addEventListener('submit', function(event) {
+              if (form.checkValidity() === false) {
+                event.preventDefault();
+                event.stopPropagation();
+              } else {
+                initiateprint();
+              }
+              form.classList.add('was-validated');
+            }, false);
+          });
+        }, false);
+      })();
+    </script>
+
+    <script type="text/javascript">
+    	var options = {
+			 data: Object.keys(jsoncompanies),
+
+		
+		
+			 list: {
+				match: {
+					enabled: true
+			 },
+			 sort: {
+					enabled: true
+			 }
+			}
+		};
+
+		jQuery("#company-input").easyAutocomplete(options);
+    </script>
+  
+
+</body></html>
