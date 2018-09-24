@@ -46,6 +46,24 @@
               </div>
             </div>
           </div>
+          <div class="alert alert-danger alert-dismissible fade show mt-2 d-none" role="alert" data-error="company-from-database">
+            Es muss ein Firmenname aus der Datenbank sein!
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="alert alert-danger alert-dismissible fade show mt-2 d-none" role="alert" data-error="no-company-selected">
+            Es wurde keine Firma ausgewählt.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="alert alert-danger alert-dismissible fade show mt-2 d-none" role="alert" data-error="company-name-not-empty">
+            Der Firmenname darf nicht leer sein.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
         </div>
         <div class="col-md-8 order-md-1">
           <h4 class="mb-3">Pers&ouml;nliche Informationen</h4>
@@ -139,6 +157,12 @@
               }
               form.classList.add('was-validated');
             }, false);
+          });
+
+          // Add click handlers for BootStrap Alert boxes.
+          $("div.alert button.close").on("click", function (event) {
+            // [Button ].[span       ].[div.alert  ]
+            event.target.parentElement.parentElement.classList.add("d-none");
           });
         }, false);
       })();

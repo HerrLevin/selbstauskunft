@@ -11,7 +11,7 @@ function initiateprint(_callback) {
 
 	var items = document.getElementsByClassName("single-company");
 	if (items.length == 0) {
-		alert("Es wurde keine Firma ausgewählt.");
+		document.querySelector('div.alert[data-error="no-company-selected"]').classList.remove("d-none");
 
 		return false; // Return to the click handler that the form shall not be flushed.
 	} else {
@@ -124,13 +124,13 @@ function newElement() {
   var inputValue = document.getElementById("company-input").value;
 
   if (!jsoncompanies.hasOwnProperty(inputValue)) {
-  	alert('Es muss ein Firmenname aus der Datenbank sein!');
+  	document.querySelector('div.alert[data-error="company-from-database"]').classList.remove("d-none");
   } else {
   li.appendChild(div);
   var t = document.createTextNode(inputValue);
   div.appendChild(t);
   if (inputValue === '') {
-    alert("Firmenname darf nicht leer sein!");
+    document.querySelector('div.alert[data-error="company-name-not-empty"]').classList.remove("d-none");
   } else {
     document.getElementById("company-list").appendChild(li);
   }
