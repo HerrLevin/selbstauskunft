@@ -10,14 +10,21 @@ function initiateprint(_callback) {
 
 
 	var items = document.getElementsByClassName("single-company");
-	for (i = 0; i < items.length; i++){
-		var name = items[i].id;
- 		var fname = jsoncompanies[name].name;
- 		var faddress = jsoncompanies[name].street;
- 		var ftown = jsoncompanies[name].town;
- 		var fcontact = jsoncompanies[name].contact;
- 		var ffax = jsoncompanies[name].fax;
-		print(fname, fcontact, faddress, ftown, pname, paddress, ptown, ffax);
+	if (items.length == 0) {
+		alert("Es wurde keine Firma ausgewählt.");
+
+		return false; // Return to the click handler that the form shall not be flushed.
+	} else {
+		for (i = 0; i < items.length; i++){
+			var name = items[i].id;
+			var fname = jsoncompanies[name].name;
+			var faddress = jsoncompanies[name].street;
+			var ftown = jsoncompanies[name].town;
+			var fcontact = jsoncompanies[name].contact;
+			var ffax = jsoncompanies[name].fax;
+			print(fname, fcontact, faddress, ftown, pname, paddress, ptown, ffax);
+		}
+		return true; // Return to the click handler that the form can be flushed.
 	}
 }
 

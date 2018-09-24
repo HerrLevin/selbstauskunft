@@ -133,7 +133,9 @@
                 event.preventDefault();
                 event.stopPropagation();
               } else {
-                initiateprint();
+                if (!initiateprint()) {
+                  event.preventDefault();
+                }
               }
               form.classList.add('was-validated');
             }, false);
