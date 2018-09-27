@@ -2,6 +2,10 @@ function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
+function showError(errorSlug) {
+	document.querySelector("div.alert[data-error='"+ errorSlug +"']").classList.remove("d-none");
+}
+
 function initiateprint(_callback) {
 	var pForm = document.getElementById("personaldata");
 	var pname = pForm.elements[0].value;
@@ -11,7 +15,7 @@ function initiateprint(_callback) {
 
 	var items = document.getElementsByClassName("single-company");
 	if (items.length == 0) {
-		document.querySelector('div.alert[data-error="no-company-selected"]').classList.remove("d-none");
+		showError("no-company-selected");
 
 		return false; // Return to the click handler that the form shall not be flushed.
 	} else {
@@ -124,13 +128,13 @@ function newElement() {
   var inputValue = document.getElementById("company-input").value;
 
   if (!jsoncompanies.hasOwnProperty(inputValue)) {
-  	document.querySelector('div.alert[data-error="company-from-database"]').classList.remove("d-none");
+  	showError("company-from-database");
   } else {
   li.appendChild(div);
   var t = document.createTextNode(inputValue);
   div.appendChild(t);
   if (inputValue === '') {
-    document.querySelector('div.alert[data-error="company-name-not-empty"]').classList.remove("d-none");
+    showError("company-name-not-empty");
   } else {
     document.getElementById("company-list").appendChild(li);
   }
