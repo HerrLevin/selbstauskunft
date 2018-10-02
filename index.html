@@ -46,6 +46,24 @@
               </div>
             </div>
           </div>
+          <div class="alert alert-danger alert-dismissible fade show mt-2 d-none" role="alert" data-error="company-from-database">
+            Es muss ein Firmenname aus der Datenbank sein!
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="alert alert-danger alert-dismissible fade show mt-2 d-none" role="alert" data-error="no-company-selected">
+            Es wurde keine Firma ausgewählt.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="alert alert-danger alert-dismissible fade show mt-2 d-none" role="alert" data-error="company-name-not-empty">
+            Der Firmenname darf nicht leer sein.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
         </div>
         <div class="col-md-8 order-md-1">
           <h4 class="mb-3">Pers&ouml;nliche Informationen</h4>
@@ -54,7 +72,7 @@
                 <label for="pname">Name</label>
                 <input type="text" class="form-control" id="pname" placeholder="Erika Mustermann" required="">
                 <div class="invalid-feedback">
-                  Dein Name ist ben&ouml;tigt.
+                  Dein Name wird ben&ouml;tigt.
                 </div>
               </div>
 
@@ -62,7 +80,7 @@
               <label for="address">Adresse</label>
               <input type="text" class="form-control" id="address" placeholder="Musterstraße 13" required="">
               <div class="invalid-feedback">
-                Bitte eine Adresse eingeben
+                Deine Adresse wird ben&ouml;tigt.
               </div>
             </div>
 
@@ -72,16 +90,16 @@
                 <label for="zip">Postleitzahl</label>
                 <input type="text" class="form-control" id="zip" placeholder="15567" required="">
                 <div class="invalid-feedback">
-                  Postleitzahl benötigt
+                  Deine Postleitzahl wird ben&ouml;tigt.
                 </div>
               </div>
-            <div class="col-md-8 mb-3">
-              <label for="address2">Stadt</label>
-              <input type="text" class="form-control" id="town" placeholder="Musterstadt" required="">
-              <div class="invalid-feedback">
-                Bitte eine Stadt eingeben
+              <div class="col-md-8 mb-3">
+                <label for="address2">Stadt</label>
+                <input type="text" class="form-control" id="town" placeholder="Musterstadt" required="">
+                <div class="invalid-feedback">
+                  Dein Stadtname wird ben&ouml;tigt.
+                </div>
               </div>
-            </div>
             </div>
 
 
@@ -133,10 +151,18 @@
                 event.preventDefault();
                 event.stopPropagation();
               } else {
-                initiateprint();
+                if (!initiateprint()) {
+                  event.preventDefault();
+                }
               }
               form.classList.add('was-validated');
             }, false);
+          });
+
+          // Add click handlers for BootStrap Alert boxes.
+          $("div.alert button.close").on("click", function (event) {
+            // [Button ].[span       ].[div.alert  ]
+            event.target.parentElement.parentElement.classList.add("d-none");
           });
         }, false);
       })();

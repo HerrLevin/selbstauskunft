@@ -2,6 +2,10 @@ function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
+function showError(errorSlug) {
+	document.querySelector("div.alert[data-error='"+ errorSlug +"']").classList.remove("d-none");
+}
+
 function initiateprint(_callback) {
 	var pForm = document.getElementById("personaldata");
 	var pname = pForm.elements[0].value;
@@ -10,14 +14,21 @@ function initiateprint(_callback) {
 
 
 	var items = document.getElementsByClassName("single-company");
-	for (i = 0; i < items.length; i++){
-		var name = items[i].id;
- 		var fname = jsoncompanies[name].name;
- 		var faddress = jsoncompanies[name].street;
- 		var ftown = jsoncompanies[name].town;
- 		var fcontact = jsoncompanies[name].contact;
- 		var ffax = jsoncompanies[name].fax;
-		print(fname, fcontact, faddress, ftown, pname, paddress, ptown, ffax);
+	if (items.length == 0) {
+		showError("no-company-selected");
+
+		return false; // Return to the click handler that the form shall not be flushed.
+	} else {
+		for (i = 0; i < items.length; i++){
+			var name = items[i].id;
+			var fname = jsoncompanies[name].name;
+			var faddress = jsoncompanies[name].street;
+			var ftown = jsoncompanies[name].town;
+			var fcontact = jsoncompanies[name].contact;
+			var ffax = jsoncompanies[name].fax;
+			print(fname, fcontact, faddress, ftown, pname, paddress, ptown, ffax);
+		}
+		return true; // Return to the click handler that the form can be flushed.
 	}
 }
 
@@ -117,13 +128,13 @@ function newElement() {
   var inputValue = document.getElementById("company-input").value;
 
   if (!jsoncompanies.hasOwnProperty(inputValue)) {
-  	alert('Es muss ein Firmenname aus der Datenbank sein!');
+  	showError("company-from-database");
   } else {
   li.appendChild(div);
   var t = document.createTextNode(inputValue);
   div.appendChild(t);
   if (inputValue === '') {
-    alert("Firmenname darf nicht leer sein!");
+    showError("company-name-not-empty");
   } else {
     document.getElementById("company-list").appendChild(li);
   }
